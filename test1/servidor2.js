@@ -67,6 +67,16 @@ app.post('/registerusers', function (req, res) {
 
 	//res.send();
 	console.log(req.body.name);
+	var user_instance = new UserModel({
+		name: req.body.name,
+		age: req.body.age
+	});
+
+	user_instance.save(function (err) {
+	  if (err) return handleError(err);
+	  // No errors
+	  console.log(req.body.name + " inserted");
+	});
 	res.sendFile(__dirname + '/vista1.html');
 });
 

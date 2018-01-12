@@ -24,7 +24,7 @@ var rl = readline.createInterface({
 	input: fs.createReadStream('data.txt')
 });
 
-rl.on('line', function (line) {
+/*rl.on('line', function (line) {
 
 	var user_instance = new UserModel({
 		name: line,
@@ -36,5 +36,5 @@ rl.on('line', function (line) {
 	  // No errors
 	  console.log(line+" inserted");
 	});
-});
+});*/
 
