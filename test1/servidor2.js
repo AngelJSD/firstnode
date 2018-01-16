@@ -15,6 +15,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+app.engine('html', require('ejs').renderFile);
 
 mongoose.connect(mongoDB, {
   useMongoClient: true
@@ -71,7 +72,6 @@ app.post('/registerusers', function (req, res) {
 		name: req.body.name,
 		age: req.body.age
 	});
-
 	user_instance.save(function (err) {
 	  if (err) return handleError(err);
 	  // No errors
@@ -80,6 +80,38 @@ app.post('/registerusers', function (req, res) {
 	res.sendFile(__dirname + '/vista1.html');
 });
 
+app.get('/updateusers', function (req, res) {
+	query.exec(function (err, users) {
+		if (err) return handleError(err);
+		res.render(__dirname + '/vista2.html', {users: users});
+	});
+	
+});
+
+app.post('/updateuser', function (req, res) {
+	UserModel.findById(req.body.id, function (err, user) {
+		if (err) return handleError(err);
+		
+		user.name = req.body.name;
+		user.age = req.body.age;
+		user.save(function (err, updatedUser) {
+			if (err) return handleError(err);
+			console.log("User updated");
+
+			query.exec(function (err, users) {
+				if (err) return handleError(err);
+				res.render(__dirname + '/vista2.html', {users: users});
+			});
+		});
+	});
+	/*UserModel.update({_id: req.body.id}, { $set: { name: req.body.name, age: req.body.age }});
+	console.log("User updated");
+	query.exec(function (err, users) {
+		if (err) return handleError(err);
+		res.render(__dirname + '/vista2.html', {users: users});
+	});*/
+	
+});
 //dante.cuevas@apselom.com
 /*app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

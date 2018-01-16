@@ -1,0 +1,63 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <!--<h1> <%= users %> </h1>-->
+      <h2>Update Users</h2>
+      <div>
+      <!--<table class="striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% users.forEach(function(user){ %>
+            <tr>
+                <th> <input type="text" value=<%= user.name %> > </th>
+                <th> <input type="number" value=<%= user.age %> > </th>
+                <th>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                        <i class="material-icons right">send</i>
+                    </button>
+                </th>
+            </tr>
+            <% }); %>
+            
+        </tbody>
+      </table>-->
+        <div class="row">
+            <div class="col s4 l8">Name</div>
+            <div class="col s8 l4">Age</div>   
+        </div>
+            
+        <% users.forEach(function(user){ %>
+        
+        <form class="row" method="post" action="/updateuser">
+            <div class="col s4 l8"> <input type="text" id="name" name="name" value=<%= user.name %> > </div>
+            <div class="col s2 l2"> <input type="number" id="age" name="age" value=<%= user.age %> > </div>
+            <input type="hidden" id="id" name="id" value=<%= user._id %> >
+            <div class="col s6 l2">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+        <% }); %>     
+      </div>
+    </body>
+</html>
