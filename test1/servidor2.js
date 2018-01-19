@@ -50,7 +50,8 @@ app.get('/hola', function (req, res) {
 app.get('/users', function (req, res) {
 	query.exec(function (err, users) {
   		if (err) return handleError(err);
-  		res.send(users);
+		//res.send(users);
+		res.render(__dirname + '/vista0.html', {users: users});
 	});
 });
 

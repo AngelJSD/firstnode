@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--<h1> <%= users %> </h1>-->
+    <h2>Users</h2>
+    <div>
+      <div class="row">
+          <div class="col s4 l8"> <strong>Name</strong></div>
+          <div class="col s8 l4"> <strong>Age</strong></div>   
+      </div>
+          
+      <% users.forEach(function(user){ %>
+      <div class="row">
+        <div class="col s4 l8"> <%= user.name %> </div>
+        <div class="col s2 l4"> <%= user.age %> </div>
+      </div>
+      <% }); %>     
+    </div>
+  </body>
+</html>
